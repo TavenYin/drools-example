@@ -1,0 +1,26 @@
+package org.example.drools.stream.lengthwindow
+
+import org.example.drools.web.stream.model.*
+import org.slf4j.Logger
+
+global Logger log
+
+declare SensorReading
+@role(event)
+//@expires(11s)
+end
+
+declare TemperatureThreshold
+@role(event)
+end
+
+rule "Sound the alarm if temperature rises above threshold length"
+when
+  TemperatureThreshold($max : max)
+  $avg: Number(doubleValue > $max) from accumulate(
+    SensorReading($temp : temperature) over window:length(3),
+    average($temp))
+then
+  // Sound the alarm.
+  log.info("Sound the alarm. avg is {}", $avg);
+end

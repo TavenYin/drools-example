@@ -39,4 +39,12 @@
         <ksession name="StreamKS"/>
     </kbase>
 
+    <kbase name="TimeWindowKB" eventProcessingMode="stream" packages="org.example.drools.stream.timewindow">
+        <ksession name="TimeWindowKS"/>
+    </kbase>
+
+    <kbase name="LengthWindowKB" eventProcessingMode="stream" packages="org.example.drools.stream.lengthwindow">
+        <ksession name="LengthWindowKS"/>
+    </kbase>
+
 </kmodule>
