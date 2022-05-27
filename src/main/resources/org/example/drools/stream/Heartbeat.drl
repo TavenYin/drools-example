@@ -1,0 +1,20 @@
+package org.example.drools.stream
+
+import org.example.drools.web.stream.model.Heartbeat
+import org.slf4j.Logger
+
+global Logger log;
+
+declare Heartbeat
+@role(event)
+end
+
+rule "Sound the alarm"
+when
+  // 将 "MonitoringStream" 中获取到的事件声明为 $h
+  // $h 发后后的 0 -> 10s 内，没有收到 Heartbeat 时，触发规则
+  $h: Heartbeat() from entry-point "MonitoringStream"
+  not(Heartbeat(this != $h, this after[0s,10s] $h) from entry-point "MonitoringStream")
+then
+  log.info("Sound the alarm");
+end

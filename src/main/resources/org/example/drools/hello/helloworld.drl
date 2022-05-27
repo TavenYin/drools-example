@@ -1,0 +1,26 @@
+package org.example.drools.hello;
+
+import org.example.drools.web.hello.model.Message;
+
+rule "Good Bye"
+    dialect "java"
+    when
+        Message( status == Message.GOODBYE, message : message )
+    then
+        System.out.println( message );
+end
+
+
+rule "Hello World"
+    dialect "mvel"
+    when
+        m : Message( status == Message.HELLO, message : message )
+    then
+        System.out.println( message );
+        // java 语法
+//        modify ( m ) { setMessage( "Goodbyte cruel world" ),
+//                       setStatus( Message.GOODBYE ) };
+        modify ( m ) { message = "Goodbye cruel world",
+                   status = Message.GOODBYE };
+end
+

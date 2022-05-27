@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.drools.org/xsd/kmodule">
+
+<!--    <kbase name="FireKB" packages="org.example.drools.fire" includes="HelloWorldKB">-->
+<!--        <ksession name="FireKS" default="true"/>-->
+<!--    </kbase>-->
+
+    <kbase name="HelloWorldKB" packages="org.example.drools.hello">
+        <ksession name="HelloWorldKS" />
+        <ksession name="StatelessKS" type="stateless"/>
+    </kbase>
+
+    <kbase name="SequentialKB" packages="org.example.drools.hello" sequential="true">
+        <ksession name="SequentialKS" type="stateless"/>
+    </kbase>
+
+<!--    <kbase name="FireStatelessKB" sequential="true" packages="org.example.drools.fire">-->
+<!--        <ksession name="FireStatelessKS" type="stateless" />-->
+<!--    </kbase>-->
+
+    <kbase name="FibonacciKB" packages="org.example.drools.fibonacci">
+        <ksession name="FibonacciKS" />
+    </kbase>
+
+    <kbase name="HonestPoliticianKB" packages="org.example.drools.honestpolitician">
+        <ksession name="HonestPoliticianKS" />
+    </kbase>
+
+    <kbase name="FireKB" packages="org.example.drools.fire">
+        <ksession name="FireKS" />
+    </kbase>
+
+    <kbase name="BackwardKB" packages="org.example.drools.backward">
+        <ksession name="BackwardKS" />
+    </kbase>
+
+    <kbase name="StreamKB" eventProcessingMode="stream" packages="org.example.drools.stream">
+        <ksession name="StreamKS"/>
+    </kbase>
+
+</kmodule>

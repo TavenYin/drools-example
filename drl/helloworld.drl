@@ -1,0 +1,13 @@
+package org.example.drools.hello;
+
+rule "helloworld1"
+    when
+    then
+    System.out.println("Hello World1");
+end
+
+rule "helloworld2"
+    when
+    then
+    System.out.println("Hello World2");
+end
