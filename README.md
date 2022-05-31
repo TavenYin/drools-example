@@ -21,3 +21,7 @@ org.example.drools.web.marshall
 ## 5. kContainer 更新
 
 org.example.drools.web.container
+
+## 6. Java Api 生成 drl 
+
+org.example.drools.web.descr
