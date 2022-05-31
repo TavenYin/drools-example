@@ -22,6 +22,6 @@ org.example.drools.web.marshall
 
 org.example.drools.web.container
 
-## 6. Java Api 生成 drl 
+## 6. Drools API 生成 drl 
 
 org.example.drools.web.descr
