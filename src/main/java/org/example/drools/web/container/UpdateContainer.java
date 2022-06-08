@@ -26,9 +26,10 @@ public class UpdateContainer {
 
     KieServices ks = KieServices.Factory.get();
 
-    private KieContainerImpl kContainer;
+    private KieContainerImpl kc;
 
-    public UpdateContainer() {
+    @GetMapping("create")
+    public void create() {
         KieFileSystem kfs = ks.newKieFileSystem();
         // kfs
         kfs.write("src/main/resources/org/example/drools/hello/helloworld.drl",
@@ -40,7 +41,7 @@ public class UpdateContainer {
         kieBuilder.buildAll();
         // releaseId 与 pom 中声明的一致
         // 如果 kfs 中未写入 pom 的话，这里也不需要指定 releaseId
-        this.kContainer = (KieContainerImpl) ks.newKieContainer(ks.getRepository().getDefaultReleaseId());
+        this.kc = (KieContainerImpl) ks.newKieContainer(ks.getRepository().getDefaultReleaseId());
     }
 
     @GetMapping("update")
@@ -53,12 +54,12 @@ public class UpdateContainer {
                 ResourceFactory.newClassPathResource("META-INF/kmodule.xml"));
         KieBuilder kieBuilder = ks.newKieBuilder(kfs);
         KieModule kieModule = kieBuilder.getKieModule();
-        kContainer.updateToKieModule((InternalKieModule) kieModule);
+        kc.updateToKieModule((InternalKieModule) kieModule);
     }
 
     @GetMapping("run")
     public void run() {
-        KieSession kieSession = kContainer.newKieSession("HelloWorldKS");
+        KieSession kieSession = kc.newKieSession("HelloWorldKS");
         Message message = new Message();
         message.setMessage( "Hello World" );
         message.setStatus( Message.HELLO );
@@ -72,7 +73,7 @@ public class UpdateContainer {
 
     @GetMapping("runAfterUpdate")
     public void runAfterUpdate() {
-        KieSession kieSession = kContainer.newKieSession("HelloWorldKS");
+        KieSession kieSession = kc.newKieSession("HelloWorldKS");
         Message message = new Message();
         message.setMessage( "Hello World" );
         message.setStatus( Message.HELLO );
