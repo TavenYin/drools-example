@@ -2,10 +2,6 @@
 <kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://www.drools.org/xsd/kmodule">
 
-<!--    <kbase name="FireKB" packages="org.example.drools.fire" includes="HelloWorldKB">-->
-<!--        <ksession name="FireKS" default="true"/>-->
-<!--    </kbase>-->
-
     <kbase name="HelloWorldKB" packages="org.example.drools.hello">
         <ksession name="HelloWorldKS" />
         <ksession name="StatelessKS" type="stateless"/>
@@ -14,10 +10,6 @@
     <kbase name="SequentialKB" packages="org.example.drools.hello" sequential="true">
         <ksession name="SequentialKS" type="stateless"/>
     </kbase>
-
-<!--    <kbase name="FireStatelessKB" sequential="true" packages="org.example.drools.fire">-->
-<!--        <ksession name="FireStatelessKS" type="stateless" />-->
-<!--    </kbase>-->
 
     <kbase name="FibonacciKB" packages="org.example.drools.fibonacci">
         <ksession name="FibonacciKS" />
@@ -47,4 +39,17 @@
         <ksession name="LengthWindowKS"/>
     </kbase>
 
+    <kbase name="DecisionTableKB" packages="org.example.drools.decisiontable">
+        <ksession name="DecisionTableKS"/>
+    </kbase>
+
+    <kbase name="DTableWithTemplateKB" packages="org.example.drools.decisiontable-template">
+        <ruleTemplate dtable="org/example/drools/decisiontable-template/ExamplePolicyPricingTemplateData.xls"
+                      template="org/example/drools/decisiontable-template/BasePricing.drt"
+                      row="3" col="3"/>
+        <ruleTemplate dtable="org/example/drools/decisiontable-template/ExamplePolicyPricingTemplateData.xls"
+                      template="org/example/drools/decisiontable-template/PromotionalPricing.drt"
+                      row="18" col="3"/>
+        <ksession name="DTableWithTemplateKS"/>
+    </kbase>
 </kmodule>
