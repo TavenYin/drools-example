@@ -1,4 +1,4 @@
-package org.example.drools.web.descr;
+package org.example.drools.test.descr;
 
 import org.drools.compiler.lang.api.DescrFactory;
 import org.drools.compiler.lang.descr.PackageDescr;

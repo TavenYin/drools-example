@@ -16,6 +16,8 @@ org.example.drools.web.decisiontable
 
 ## 4. 数据驱动模板
 
+org.example.drools.web.datadriventemplate
+
 ## 5. 流式处理
 
 org.example.drools.web.stream
@@ -30,4 +32,17 @@ org.example.drools.web.container
 
 ## 8. Drools API 生成 drl 
 
-org.example.drools.web.descr
+org.example.drools.test.descr
+
+# 常见问题
+
+1. 编译决策表等方式生成 DRL 该如何使用？
+
+    可以用于构建 KieFileSystem
+   
+    ```java
+    String drl = ...;
+    KieFileSystem kfs = ks.newKieFileSystem();
+    kfs.write( "src/main/resources/org/example/drools/hello/helloworld.drl",
+            ResourceFactory.newByteArrayResource(drl.getBytes(StandardCharsets.UTF_8)) );
+    ```
