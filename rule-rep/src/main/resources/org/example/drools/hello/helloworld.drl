@@ -1,0 +1,19 @@
+package org.example.drools.hello;
+
+rule "helloworld1"
+    when
+    then
+    System.out.println("Hello rule-rep1");
+end
+
+rule "helloworld2"
+    when
+    then
+    System.out.println("Hello rule-rep2");
+end
+
+rule "helloworld3"
+    when
+    then
+    System.out.println(new DemoDTO("hello rule-rep dto").getName());
+end
