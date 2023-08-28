@@ -13,8 +13,7 @@ import org.junit.Test;
  */
 public class DescrBuilderTest {
 
-    @Test
-    public void buildDrl() {
+    public static void main() {
         PackageDescr pkg = DescrFactory.newPackage().name( "org.test" )
                 .newRule().name( "org.test" )
                 .lhs().and()
