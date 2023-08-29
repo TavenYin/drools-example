@@ -34,7 +34,8 @@ public class LoadRuleJarController {
 
     @GetMapping("run")
     public void run() {
-        KieSession kSession = kieContainer.newKieSession("RuleRepKSession");
+        KieContainer container = this.kieContainer;
+        KieSession kSession = container.newKieSession("RuleRepKSession");
         kSession.fireAllRules();
         kSession.dispose();
     }
