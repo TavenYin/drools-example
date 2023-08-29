@@ -18,7 +18,7 @@ import java.io.File;
 @RequestMapping("jar")
 public class LoadRuleJarController {
 
-    private final KieContainer kieContainer;
+    private KieContainer kieContainer;
 
     public LoadRuleJarController() {
         ReleaseId releaseId = new ReleaseIdImpl("org.example", "rule-rep", "1.0-SNAPSHOT");
@@ -29,9 +29,7 @@ public class LoadRuleJarController {
         InternalKieModule kieModule = InternalKieModule.createKieModule(releaseId, ruleJar);
         KieServices.get().getRepository().addKieModule(kieModule);
         this.kieContainer = KieServices.get().newKieContainer(releaseId);
-        KieSession kSession = kieContainer.newKieSession("RuleRepKSession");
-        kSession.fireAllRules();
-        kSession.dispose();
+        this.run();
     }
 
     @GetMapping("run")
@@ -39,6 +37,20 @@ public class LoadRuleJarController {
         KieSession kSession = kieContainer.newKieSession("RuleRepKSession");
         kSession.fireAllRules();
         kSession.dispose();
+    }
+
+    @GetMapping("update")
+    public void update() {
+        ReleaseId releaseId = new ReleaseIdImpl("org.example", "rule-rep", "1.0-SNAPSHOT");
+        // 注意这里版本不同了
+        String jarName = "rule-rep-1.0.1-SNAPSHOT.jar";
+
+        File ruleJar = new File(System.getProperty("user.dir") + "\\drl\\" + jarName);
+
+        InternalKieModule kieModule = InternalKieModule.createKieModule(releaseId, ruleJar);
+        KieServices.get().getRepository().addKieModule(kieModule);
+        this.kieContainer = KieServices.get().newKieContainer(releaseId);
+        this.run();
     }
 
 }
